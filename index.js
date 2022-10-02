@@ -1,36 +1,19 @@
 const express = require('express')
 const config = require('config')
+const {db} = require('./db')
+const cors = require('cors')
 
-
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
 
 const app = express()
 const PORT = config.get('port') ||5000
 app.use(express.json({extended:true}))
 app.use('/api/',require('./router/main.router'))
-
-
-// create table Users:
-GET('/api/create', () => db.dataTable.create());
-
-GET('/api/init', () => db.dataTable.init());
-
-// Generic GET handler;
-function GET(url, handler) {
-    app.get(url, async (req, res) => {
-        try {
-            const data = await handler(req);
-            res.json({
-                success: true,
-                data
-            });
-        } catch (error) {
-            res.json({
-                success: false,
-                error: error.message || error
-            });
-        }
-    });
-}
+app.use(cors(corsOptions))
 
 async function start(){
     try {

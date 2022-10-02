@@ -12,9 +12,11 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "config": "^3.3.8",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
     "nodemon": "^2.0.20",
     "pg-monitor": "^1.5.0",
-    "pg-promise": "^10.12.0"
+    "pg-promise": "^10.12.0",
+    "react-redux": "^8.0.4"
   }
 }

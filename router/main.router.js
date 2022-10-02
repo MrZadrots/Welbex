@@ -5,8 +5,13 @@ const router = Router()
 
 router.get('/all',[],async (req,res)=>{
     try {
-        const rezult = db.dataTable.all()
-        return res.status(200).json({message:rezult})
+        const rezult = await db.dataTable.all()
+        console.log(rezult)
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        return res.status(200).json([...rezult])
     } catch (error) {
         console.log(error.message)
         return res.status(500).json({message:"Что-то пошло ни так!"})

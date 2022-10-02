@@ -1,24 +1,31 @@
-const {QueryFile} = require('pg-promise')
-const {join:joinPath} = require('path')
+const {QueryFile} = require('pg-promise');
+const {join: joinPath} = require('path');
 
 module.exports = {
-    dataTable:{
-        create: sql('data/create.sql'),
-        init: sql('data/init.sql'),
-        add: sql('data/add.sql'),
-        drop: sql('data/drop.sql')
-    }
-}
+    dataTable: {
+        create: sql('dataTable/create.sql'),
+        empty: sql('dataTable/empty.sql'),
+        init: sql('dataTable/init.sql'),
+        drop: sql('dataTable/drop.sql'),
+        add: sql('dataTable/add.sql')
+    },
+};
 
-function sql(file){
-    const fullPath = joinPath(__dirname, file)
+
+function sql(file) {
+
+    const fullPath = joinPath(__dirname, file); //
+
     const options = {
-        manify: true
-    }
-    const qf = new QueryFile(fullPath,options)
-    if(qf.error){
-        console.log(qf.error)
+        minify: true
+    };
+
+    const qf = new QueryFile(fullPath, options);
+
+    if (qf.error) {
+        console.error(qf.error);
     }
 
-    return qf
+    return qf;
+
 }

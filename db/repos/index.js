@@ -1,3 +1,3 @@
 module.exports = {
-    dataTable: require('./dataTable')
+    DataTable: require('./dataTable')
 };

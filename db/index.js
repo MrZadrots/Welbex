@@ -1,18 +1,25 @@
-const pgPromise = require("pg-promise")
-const promise = require('bluebird')
-const dbConfig = require("../config/dbConfig.json")
-const {dataTable} = require('./repos')
+const promise = require('bluebird'); 
+const pgPromise = require('pg-promise'); 
+const dbConfig = require('../config/dbConfig.json'); 
+const {Diagnostics} = require('./diagnostics'); 
+const {DataTable} = require('./repos');
 
 
 const initOptions = {
     promiseLib: promise,
-    extend(obj,dc){
-        obj.dataTable = new dataTable(obj,pgp)
+
+    extend(obj, dc) {
+        obj.dataTable = new DataTable(obj, pgp);
     }
-}
+};
 
+// Initializing the library:
+const pgp = pgPromise(initOptions);
 
-const pgp = pgPromise(initOptions)
-const db = pgp(dbConfig)
+// Creating the database instance:
+const db = pgp(dbConfig);
 
-module.exports = {db,pgp}
+// Initializing optional diagnostics:
+Diagnostics.init(initOptions);
+
+module.exports = {db, pgp};
