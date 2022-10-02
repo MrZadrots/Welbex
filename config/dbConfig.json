@@ -1,0 +1,6 @@
+{
+    "host":"127.0.0.1",
+    "portDb":5432,
+    "database":"test",
+    "user":"postgres"
+}

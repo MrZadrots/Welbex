@@ -1,0 +1,9 @@
+{
+    "port":5000,
+    "jwtSecret":"artemkey",
+    "host":"127.0.0.1",
+    "baseUrl":"http://localhost:5000",
+    "portDb":5432,
+    "database":"test",
+    "user":"postgres"
+}
