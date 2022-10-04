@@ -3,67 +3,39 @@ import { dataType } from '../../types/types'
 import './search.css'
 import Table from '../table/table'
 import { ISearchInput } from '../../types/types'
-
+import { filteredData, sorted } from '../../utils/utils'
 
 const SearchInput:React.FC<ISearchInput> = (dataVisiavble) =>{
 
-    const [searchText, setSearchText] = useState('')
-    
+    const [searchText, setSearchText] = useState({
+        tableField:'name',searchText:'',searchСondition:'eq'
+    })
     const [data, setData] = useState<dataType[]>(dataVisiavble.dataVisiavble)
-
-    const onChangeHandler = (e:any)=> {
-        /*setSearchText(e.target.value)
-        const filteredData = dataVisiavble.dataVisiavble.filter(line =>{
-            return line.name.toLowerCase().includes(searchText.toLowerCase()) ||
-                line.date.toLowerCase().includes(searchText.toLowerCase())
-        })
-        setData(filteredData)*/
-    }
-
-    const sorted = (massive:dataType[],name:string,mode:boolean) =>{
-        switch(name){
-            case 'id':
-                if(mode){ 
-                    return [...massive].sort((a, b) => a.id > b.id ? 1 : -1)
-                }
-                else{
-                    return [...massive].sort((a, b) => a.id < b.id ? 1 : -1)
-                }
-            case 'title':
-                if(mode){
-                    return [...massive].sort((a, b) => a.name > b.name ? 1 : -1)
-                }
-                else{
-                    return [...massive].sort((a, b) => a.name < b.name ? 1 : -1)
-                }
-            
-            case 'body':
-                    if(mode){
-                        return [...massive].sort((a, b) => a.date > b.date ? 1 : -1)
-                    }
-                    else{
-                        return [...massive].sort((a, b) => a.date < b.date ? 1 : -1)
-                    }
-            default:
-                return massive   
-        }
+    
+    const onChangeHandler = async(e:any)=> {
+        await setSearchText({...searchText, [e.target.name]:e.target.value})
+        const tmp = filteredData(searchText,e,dataVisiavble.dataVisiavble)
+        setData(tmp)
 
     }
+
+    
+    
     const sortedHandler = (e:any) =>{
        if(e.target.classList.contains('fa')){
             e.target.classList.toggle('rotate')
-            if(e.target.classList.contains('id')){
+            if(e.target.classList.contains('name')){
                 
-                const tmp = sorted(data,'id',e.target.classList.contains('rotate'))
+                const tmp = sorted(data,'name',e.target.classList.contains('rotate'))
                 setData(tmp)
             }
-            if(e.target.classList.contains('title')){
-                const tmp = sorted(data,'title',e.target.classList.contains('rotate'))
+            if(e.target.classList.contains('count')){
+                const tmp = sorted(data,'count',e.target.classList.contains('rotate'))
                 setData(tmp)
                 
             }
-            if(e.target.classList.contains('body')){
-                const tmp = sorted(data,'body',e.target.classList.contains('rotate'))
+            if(e.target.classList.contains('dist')){
+                const tmp = sorted(data,'dist',e.target.classList.contains('rotate'))
                 setData(tmp)
             }
         }
@@ -73,33 +45,40 @@ const SearchInput:React.FC<ISearchInput> = (dataVisiavble) =>{
         <div className="mainContainer">
             <div className="container">
                 <div className="row">
-
-                    <div className='col-md-3 mainSearcher'>
-                        <select className = "selected">
-                            <option>Дата</option>
-                            <option>Название</option>
-                            <option>Количество</option>
-                            <option>Расстояние</option>
-                        </select>
-                    </div>
-                    <div className="col-md-3 mainSearcher">
-                        <input 
-                            type='text'
-                            name='searchText'
+                        <div className='col-md-3 mainSearcher'>
+                            <select 
+                            className = "selected"  
                             onChange={onChangeHandler}
-                            className = "searched"
-                            placeholder='Поиск'
-                        >
-                        </input>
-                    </div>
-                    <div className='col-md-3 mainSearcher'>
-                        <select className="selected">
-                            <option>Равно</option>
-                            <option>Больше</option>
-                            <option>Меньше</option>
-                            <option>Содержит</option>
-                        </select>
-                    </div>
+                            name="tableField"
+                            defaultValue='name'
+                            >
+                                <option value="date">Дата</option>
+                                <option value="name">Название</option>
+                                <option value="count">Количество</option>
+                                <option value="dist">Расстояние</option>
+                            </select>
+                        </div>
+                        <div className="col-md-3 mainSearcher">
+                            <input 
+                                type='text'
+                                name='searchText'
+                                onChange={onChangeHandler}
+                                className = "searched"
+                                placeholder='Поиск'
+                            >
+                            </input>
+                        </div>
+                        <div className='col-md-3 mainSearcher'>
+                            <select className="selected"  
+                            onChange={onChangeHandler} 
+                            name="searchСondition"
+                            defaultValue='eq'>
+                                <option value="=">Равно</option>
+                                <option value=">">Больше</option>
+                                <option value="<">Меньше</option>
+                                <option value="eq">Содержит</option>
+                            </select>
+                        </div>
                 </div>
             </div>
             <div className='container'>

@@ -24,25 +24,24 @@ const Table:React.FC<ITable> = ({dataVisible,sortedHandler}) =>{
                                 <th scope='col'>
                                     <div className="thContainer" >
                                         <span>Дата</span>
-                                        <i className="fa fa-angle-down title" aria-hidden="true" onClick={sortedHandler}></i>
                                     </div>
                                 </th>
                                 <th scope='col'>
                                     <div className="thContainer">
                                         <span>Название</span>
-                                        <i className="fa fa-angle-down body" aria-hidden="true"  onClick={sortedHandler}></i>
+                                        <i className="fa fa-angle-down name" aria-hidden="true"  onClick={sortedHandler}></i>
                                     </div>
                                 </th>
                                 <th scope='col'>
                                     <div className="thContainer">
                                         <span>Количество</span>
-                                        <i className="fa fa-angle-down body" aria-hidden="true"  onClick={sortedHandler}></i>
+                                        <i className="fa fa-angle-down count" aria-hidden="true"  onClick={sortedHandler}></i>
                                     </div>
                                 </th>
                                 <th scope='col'>
                                     <div className="thContainer">
                                         <span>Расстояние</span>
-                                        <i className="fa fa-angle-down body" aria-hidden="true"  onClick={sortedHandler}></i>
+                                        <i className="fa fa-angle-down dist" aria-hidden="true"  onClick={sortedHandler}></i>
                                     </div>
                                 </th>
                             </tr>

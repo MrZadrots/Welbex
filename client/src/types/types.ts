@@ -27,7 +27,7 @@ export interface IPagination{
 
 
 export interface ISearchInput{
-    dataVisiavble: dataType[]
+    dataVisiavble: dataType[],
 }
 
 

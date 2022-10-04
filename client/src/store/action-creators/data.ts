@@ -11,7 +11,7 @@ export const fetchDataTable = () =>{
         } catch (error) {
             return dispatch({
                 type:DataActionTypes.FETCH_DATA_ERROR, 
-                payload:"Произошла ошибка загрузки данныъ"})
+                payload:"Произошла ошибка загрузки данных"})
         }
     }
 }

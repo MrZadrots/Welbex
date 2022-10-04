@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import Table from '../components/table/table'
 import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../hooks/useTypedSelector'
@@ -10,13 +10,16 @@ import SearchInput from '../components/searcher/search'
 const MainPage:React.FC = () =>{
     const dispatch = useAppDispatch();
     const {data,error,loading} = useTypedSelector(state => state.data)
+
+    const [tmpPage, setTmpPage] = useState('')
+
+
     let dataVisible:dataType[] = data
 
     useEffect(()=>{
         dispatch(fetchDataTable())
         dataVisible = data
     },[])
-    console.log(data)
 
     if (loading){
         return(<h1>Загрузка</h1>)
