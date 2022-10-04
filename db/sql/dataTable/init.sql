@@ -1,15 +1,20 @@
-/*
-    Inserting a few demo users into the database, and returning their id-s;
 
-    NOTES:
-
-    - You can do multiple separate inserts, if you want, but using
-      a single concatenated insert is significantly faster.
-
-    See also:
-    https://github.com/vitaly-t/pg-promise/wiki/Performance-Boost
-*/
 INSERT INTO dataTable(date,name,count,distance) VALUES
 ('2012-01-02', 'first',20,10),
 ('2012-01-03', 'second',22,15),
-('2012-01-04', 'third',24,12)
+('2012-01-05', 'third',24,12),
+('2012-01-06', 'computer',2,8),
+('2012-01-07', 'monitor',1,9),
+('2012-01-08', 'mouse',23,12),
+('2012-01-09', 'apple',44,5),
+('2012-01-10', 'lemon',30,1),
+('2012-01-11', 'juice',45,4),
+('2012-01-15', 'keyboard',7,18),
+('2012-01-16', 'banana',8,16),
+('2012-02-14', 'word',9,17),
+('2012-02-05', 'sheet',10,20),
+('2012-02-06', 'beef',15,25),
+('2012-02-07', 'milk',26,14),
+('2012-02-08', 'tomato',28,18),
+('2012-03-04', 'potatoes',24,13),
+('2012-04-14', 'cucumber',25,23)

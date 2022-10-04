@@ -1,4 +1,4 @@
 /*
-    Drops the entire table Users.
+    Drops the entire table dataTable.
 */
 DROP TABLE dataTable

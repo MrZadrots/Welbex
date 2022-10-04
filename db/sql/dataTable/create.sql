@@ -1,5 +1,5 @@
 /*
-    Creates table Users.
+    Creates table datTable.
 */
 CREATE TABLE dataTable (
     id serial PRIMARY KEY,

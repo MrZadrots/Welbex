@@ -13,7 +13,7 @@ class DataTableRepository {
         return this.db.none(sql.create);
     }
 
-    // Initializes the table with some user records, and return their id-s;
+    // Initializes the table with some data records, and return their id-s;
     async init() {
         return this.db.map(sql.init, [], row => row.id);
     }
@@ -28,32 +28,32 @@ class DataTableRepository {
         return this.db.none(sql.empty);
     }
 
-    // Adds a new user, and returns the new object;
+    // Adds a new data, and returns the new object;
     async add(name) {
         return this.db.one(sql.add, name);
     }
 
-    // Tries to delete a user by id, and returns the number of records deleted;
+    // Tries to delete a data by id, and returns the number of records deleted;
     async remove(id) {
         return this.db.result('DELETE FROM dataTable WHERE id = $1', +id, r => r.rowCount);
     }
 
-    // Tries to find a user from id;
+    // Tries to find a data from id;
     async findById(id) {
         return this.db.oneOrNone('SELECT * FROM dataTable WHERE id = $1', +id);
     }
 
-    // Tries to find a user from name;
+    // Tries to find a data from name;
     async findByName(name) {
         return this.db.oneOrNone('SELECT * FROM dataTable WHERE name = $1', name);
     }
 
-    // Returns all user records;
+    // Returns all data records;
     async all() {
         return this.db.any('SELECT * FROM dataTable');
     }
 
-    // Returns the total number of users;
+    // Returns the total number of dataTable;
     async total() {
         return this.db.one('SELECT count(*) FROM dataTable', [], a => +a.count);
     }

@@ -1,5 +1,5 @@
 /*
-    Inserts a new User record.
+    Inserts a new data record.
 */
 INSERT INTO dataTable(name)
 VALUES($1)
